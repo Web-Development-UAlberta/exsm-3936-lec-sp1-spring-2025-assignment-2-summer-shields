@@ -1,14 +1,45 @@
-// eslint-disable-next-line no-unused-vars
-/* global output, input */
-// eslint-disable-next-line no-unused-vars
 async function main() {
-  // This is where the code you're actually experimenting with goes.
+  //Abstract parent class
+  class Shape {
+    constructor(colour, area, perimeter) {
+      this.colour = colour;
+      this.area = area;
+      this.perimeter = perimeter;
+      if (new.target === Shape) {
+        throw new Error("Cannot instantiate abstract class 'Shape'!");
+      }
+    }
+    
+    contain() {
+      throw new Error("Abstract method 'contain' must be implemented!");
+    }
+  }
 
-  const prompt = "Please enter your name, or 'Exit' to quit: ";
-  let name = await input(prompt);
+  class Rectangle extends Shape {
+    get isSquare() {
+      return 
+    }
+    constructor(length, width, area, perimeter) {
+      super(area, perimeter);
+    }
+  }
 
-  while (name !== "Exit") {
-    output("Hello, " + name + "!");
-    name = await input(prompt);
+  class Triangle extends Shape {
+    constructor(base, height, area, perimeter) {
+      super(area, perimeter);
+    }
+  }
+
+  class Circle extends Shape {
+    get circumference() {
+      return 
+    }
+    constructor(radius, area, perimeter) {
+      super(area, perimeter);
+    }
+
+    get perimeter() {
+      return this.circumference;
+    }
   }
 }
