@@ -106,77 +106,54 @@ async function main() {
   }
 
   //Instantiate
-  //Shape selection
   const shapes = [];
   let createShape = "";
 
+  //Shape selection
   while (createShape !== "0") {
     output("Select a shape to create: \n1. Rectangle \n2. Triangle \n3.Circle \n0. Exit");
     createShape = await input("Choice: ");
 
     if (createShape == "1" || createShape == "2" || createShape == "3") {
-    let shape;
-    let colour;
-  
-    switch(createShape) {
-      case "1":
-        output("Creating Rectangle:");
-        colour = await input("Please enter a colour: ");
-        let length = parseFloat(await input("Please enter a length: "));
-        let width = parseFloat(await input("Please enter a width: "));
-        shape = new Rectangle(colour, length, width);
-        break;
-      case '2':
-        output("Creating Triangle:");
-        colour = await input("Please enter a colour: ");
-        let base = parseFloat(await input("Please enter a base: "));
-        let height = parseFloat(await input("Please enter a height: "));
-        shape = new Triangle(colour, base, height);
-        break;
-      case '3':
-        output("Creating Circle:");
-        colour = await input("Please enter a colour: ");
-        let radius = parseFloat(await input("Please enter a radius: "));
-        shape = new Circle(colour, radius);
-        break;
-      default:
-        output("Invalid Selection, please try again.");
+      let shape;
+      let colour;
+    
+      switch(createShape) {
+        case "1":
+          //If the user selects "1" (Rectangle)
+          output("Creating Rectangle:");
+          colour = await input("Please enter a colour: ");
+          let length = parseFloat(await input("Please enter a length: "));
+          let width = parseFloat(await input("Please enter a width: "));
+          shape = new Rectangle(colour, length, width);
+          break;
+        case '2':
+          //If the user selects "2" (Triangle)
+          output("Creating Triangle:");
+          colour = await input("Please enter a colour: ");
+          let base = parseFloat(await input("Please enter a base: "));
+          let height = parseFloat(await input("Please enter a height: "));
+          shape = new Triangle(colour, base, height);
+          break;
+        case '3':
+          //If the user selects "3" (Circle)
+          output("Creating Circle:");
+          colour = await input("Please enter a colour: ");
+          let radius = parseFloat(await input("Please enter a radius: "));
+          shape = new Circle(colour, radius);
+          break;
+        default:
+          output("Invalid Selection, please try again.");
+      }
+    
+      output(`Colour: ${shape.colour} \nTotal perimeter: ${shape.perimeter.toFixed()} \nTotal area: ${shape.area.toFixed()} \nTotal area of containing square: ${shape.contain()}`);
+      shapes.push(shape);
     }
-  
-    output(`Colour: ${shape.colour} \nTotal perimeter: ${shape.perimeter.toFixed()} \nTotal area: ${shape.area.toFixed()} \nTotal area of containing square: ${shape.contain()}`);
-    shapes.push(shape);
+    else if (createShape === "0") {
+      output("Goodbye!")
+    }
+    else {
+      output("Invalid selection, please try again!");
+    }
   }
-  else if (createShape === "0") {
-    output("Goodbye!")
-  }
-  else {
-    output("Invalid selection, please try again!");
-  }
-}
-
-
- 
-
-  
-  /*let rectangle = new Rectangle("blue", 2, 4);
-  let triangle = new Triangle("red", 3, 6);
-  let circle = new Circle("yellow", 5);
-  output(rectangle);
-  output(rectangle.perimeter);
-  output(rectangle.area);
-  output(rectangle.contain());
-  output(triangle);
-  output(triangle.perimeter);
-  output(triangle.area);
-  output(triangle.contain());
-  output(circle);
-  output(circle.perimeter);
-  output(circle.area);
-  output(circle.contain());*/
-
-  /*let test = new Shape();
-  output(test);
-  output(test.perimeter);
-  output(test.area);
-  output(test.contain());*/
 }
